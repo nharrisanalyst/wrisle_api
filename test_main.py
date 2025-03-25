@@ -15,3 +15,8 @@ def test_get_hello():
     response = client.get("/hello")
     assert response.status_code == 200
     assert response.json() == {"hello":"world"}
+
+def test_get_hello():
+    response = client.get("/alchemy")
+    assert response.status_code == 200
+    assert response.json() == {"alchemy-version":"2.0.39"}
