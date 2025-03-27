@@ -1,7 +1,12 @@
 from fastapi import FastAPI
 import sqlalchemy
+from .routes import login
+
 
 app =  FastAPI()
+
+# Include routers
+app.include_router(login.router)
 
 @app.get("/")
 async def read_root():

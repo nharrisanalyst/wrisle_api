@@ -11,7 +11,7 @@ paths:
   /login:
     post:
       summary: User Login
-      operationId: userLogin
+      operationId: userLoginxs
       requestBody:
         required: true
         content:
@@ -35,10 +35,10 @@ components:
     LoginRequest:
       type: object
       required: 
-        - email
+        - username
         - password
       properties:
-        email:
+        username:
           type: string
           format: email
           example: "example@example1234.com"
