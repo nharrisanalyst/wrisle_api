@@ -1,8 +1,19 @@
 from datetime import datetime, timedelta, timezone
+from pydantic import BaseModel
 from typing import Annotated
 from fastapi import APIRouter
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from passlib.context import CryptContext
+
+
+
+
+class LoginRequest(BaseModel):
+    username:str
+    password:str
+
+class AuthResponse(BaseModel):
+    token:str
 
 router = APIRouter(prefix="/login", tags=['login'])
 
@@ -12,5 +23,5 @@ ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 @router.post('/')
-def login_route():
+def login_route(loginRequest:LoginRequest):
     return {'route':'login'}
