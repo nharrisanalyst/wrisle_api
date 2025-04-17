@@ -2,3 +2,9 @@ fastapi[standard]==0.112.0
 uvicorn==0.34.0
 httpx==0.28.1
 SQLAlchemy==2.0.39
+PyJWT==2.10.1 
+passlib[bcrypt]==1.7.4 
+asyncpg==0.30.0 
+fastapi-users[sqlalchemy]==14.0.1
+alembic==1.15.2
+psycopg2-binary==2.9.10

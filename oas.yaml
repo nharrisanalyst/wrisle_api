@@ -1,0 +1,59 @@
+openapi: 3.0.4
+info:
+  title: Wrisle API
+  description: The backend API for the Wrisle application
+  version: 0.1.0
+
+servers:
+  - url: http://api.wrisle.com/
+
+paths:
+  /login:
+    post:
+      summary: User Login
+      operationId: userLoginxs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+      responses:
+        '200':
+          description: Succesful Login
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+        '400':
+          description: Invalid Request
+        '401':
+          description: Unauthorized
+
+components:
+  schemas:
+    LoginRequest:
+      type: object
+      required: 
+        - username
+        - password
+      properties:
+        username:
+          type: string
+          format: email
+          example: "example@example1234.com"
+        password:
+          type: string
+          format: password
+          example: "1234passworddoor"
+    
+    AuthResponse:
+      type: object
+      properties:
+        token:
+          type: string
+          format: JWT authentication token
+          example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+
+
+
