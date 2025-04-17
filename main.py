@@ -4,10 +4,10 @@ from fastapi import FastAPI
 from fastapi_users import FastAPIUsers
 import sqlalchemy
 from .routes import login
-from models.main_db import User
-from auth.UserManager import get_user_manager
-from auth.Auth_Backend import auth_backend
-from .schemas import UserCreate, UserRead
+from .models.main_db import User
+from .auth.UserManager import get_user_manager
+from .auth.Auth_Backend import auth_backend
+from .schemas.UserSchemas import UserCreate, UserRead
 
 fastapi_users = FastAPIUsers[User, uuid.UUID](
     get_user_manager,

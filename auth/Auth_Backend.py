@@ -1,5 +1,5 @@
 from fastapi_users.authentication import AuthenticationBackend,  BearerTransport, JWTStrategy
-from UserManager import SECRET
+from .UserManager import SECRET
 
 bearer_transport = BearerTransport(tokenUrl="auth/jwt/login")
 
