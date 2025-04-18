@@ -1,6 +1,7 @@
 import uuid
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi_users import FastAPIUsers
 import sqlalchemy
 from .routes import login
@@ -9,6 +10,12 @@ from .auth.UserManager import get_user_manager
 from .auth.Auth_Backend import auth_backend
 from .schemas.UserSchemas import UserCreate, UserRead
 
+
+origins = [
+    "http://localhost:6006",
+    "http://localhost:5173/"
+]
+
 fastapi_users = FastAPIUsers[User, uuid.UUID](
     get_user_manager,
     [auth_backend],
@@ -16,6 +23,14 @@ fastapi_users = FastAPIUsers[User, uuid.UUID](
 
 
 app =  FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Include routers
 app.include_router(login.router)
