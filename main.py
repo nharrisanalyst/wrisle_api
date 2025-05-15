@@ -8,12 +8,12 @@ from .routes import login
 from .models.main_db import User
 from .auth.UserManager import get_user_manager
 from .auth.Auth_Backend import auth_backend
-from .schemas.UserSchemas import UserCreate, UserRead
+from .schemas.UserSchemas import UserCreate, UserRead, UserUpdate
 
 
 origins = [
     "http://localhost:6006",
-    "http://localhost:5173/"
+    "http://localhost:5173"
 ]
 
 fastapi_users = FastAPIUsers[User, uuid.UUID](
@@ -59,4 +59,10 @@ app.include_router(
     fastapi_users.get_register_router(UserRead, UserCreate),
     prefix="/auth",
     tags=["auth"],
+)
+
+app.include_router(
+    fastapi_users.get_users_router(UserRead, UserUpdate),
+    prefix="/users",
+    tags=["users"],
 )

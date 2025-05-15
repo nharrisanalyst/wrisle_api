@@ -3,6 +3,8 @@ import datetime
 from fastapi_users import schemas
 
 class UserRead(schemas.BaseUser[uuid.UUID]):
+    id:uuid.UUID
+    email:str
     first_name:str
     last_name:str
     birthday:datetime.date
