@@ -8,3 +8,6 @@ asyncpg==0.30.0
 fastapi-users[sqlalchemy]==14.0.1
 alembic==1.15.2
 psycopg2-binary==2.9.10
+boto3==1.38.16
+python-dotenv==1.1.0
+pydantic-settings==2.9.1

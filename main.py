@@ -1,5 +1,4 @@
 import uuid
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi_users import FastAPIUsers
@@ -8,7 +7,7 @@ from .models.main_db import User
 from .auth.UserManager import get_user_manager
 from .auth.Auth_Backend import auth_backend
 from .schemas.UserSchemas import UserCreate, UserRead, UserUpdate
-
+from .settings import settings
 
 origins = [
     "http://localhost:6006",
