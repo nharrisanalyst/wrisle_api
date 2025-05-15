@@ -1,11 +1,20 @@
 import uuid
+import datetime
 from fastapi_users import schemas
 
 class UserRead(schemas.BaseUser[uuid.UUID]):
-    pass
+    id:uuid.UUID
+    email:str
+    first_name:str
+    last_name:str
+    birthday:datetime.date
 
 class UserCreate(schemas.BaseUserCreate):
-    pass
+    first_name:str
+    last_name:str
+    birthday:datetime.date
 
 class UserUpdate(schemas.BaseUserUpdate):
-    pass
+    first_name:str
+    last_name:str
+    birthday:datetime.date
