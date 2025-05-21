@@ -6,7 +6,9 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import async_engine_from_config
 
 #models to be imported 
-from models.main_db import Base, User
+from models.dependencies import Base
+from models.main_db import User
+from models.table_db import DataTable
 
 from alembic import context
 
@@ -24,6 +26,7 @@ if config.config_file_name is not None:
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
 target_metadata = Base.metadata
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
@@ -60,7 +63,7 @@ def do_run_migrations(connection: Connection) -> None:
 
     with context.begin_transaction():
         context.run_migrations()
-
+        
 
 async def run_async_migrations() -> None:
     """In this scenario we need to create an Engine

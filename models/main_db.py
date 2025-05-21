@@ -1,25 +1,29 @@
 from collections.abc import AsyncGenerator
-
+from typing import TYPE_CHECKING
 from fastapi import Depends
 from fastapi_users.db import SQLAlchemyBaseUserTableUUID, SQLAlchemyUserDatabase
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from datetime import date
+from typing import List
 from sqlalchemy import String, Date
 from sqlalchemy.orm import mapped_column
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.orm import relationship
 from sqlalchemy.orm import Mapped
+from .dependencies import Base
+
+
+if TYPE_CHECKING:
+    from .table_db import DataTable
+
 
 DATABASE_URL ="postgresql+asyncpg://nathanharris:Scout:1185@localhost:5432/wrisle_db"
 
-
-
-class Base(DeclarativeBase):
-    pass
 
 class User(SQLAlchemyBaseUserTableUUID, Base):
     first_name:Mapped[str] = mapped_column(String(30))
     last_name:Mapped[str] = mapped_column(String(30))
     birthday:Mapped[date] = mapped_column(Date)
+    tables: Mapped[List["DataTable"]] = relationship("DataTable", back_populates="user")
 
 
 engine = create_async_engine(DATABASE_URL, echo=True)
